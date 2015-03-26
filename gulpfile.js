@@ -1,5 +1,6 @@
 var gulp = require('gulp')
 var jade = require('gulp-jade')
+var uglify = require('gulp-uglify')
 var browserSync = require('browser-sync')
 
 
@@ -29,6 +30,7 @@ gulp.task("html",function(){
 
 gulp.task("js",function(){
     gulp.src(paths.script)
+        .pipe(uglify())
         .pipe(gulp.dest(paths.js))
 })
 

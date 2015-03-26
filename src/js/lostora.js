@@ -1,4 +1,4 @@
-loca$torage=(function(){
+Lostora=(function(){
     function paramType(param){
         if(typeof(param)=="string"){
             return "string"
