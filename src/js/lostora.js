@@ -1,4 +1,5 @@
-Lostora=(function(){
+'use strict'
+var Lostora=(function(){
     function paramType(param){
         if(typeof(param)=="string"){
             return "string"
@@ -27,7 +28,7 @@ Lostora=(function(){
     }
     function importJSON(json,scope){
         if(!scope){
-            for(key in json){
+            for(var key in json){
                 Handler.set(key,json[key])
             }
         }
@@ -40,11 +41,11 @@ Lostora=(function(){
         catch(e){}
         return value
     }
-    Handler={
+    var Handler={
         exist:function(key){
             return !(localStorage[key]==undefined)
         },
-        import:function(json,scope){
+        setJson:function(json,scope){
             json=parseString(json)
             importJSON(json,scope)
         },
@@ -75,14 +76,14 @@ Lostora=(function(){
         get:function(key){
             if(paramType(key)=="array"){
                 var obj={}
-                for(k in key)
+                for(var k in key)
                 {
                     console.log(key[k])
                     obj[key[k]]=getValue(localStorage.getItem(key[k]))
                 }
                 return obj
             }else{
-                try{value=parseObject(localStorage.getItem(key))}
+                try{var value=parseObject(localStorage.getItem(key))}
                 catch(e){value=localStorage.getItem(key)}
                 return value
             }
@@ -99,4 +100,4 @@ Lostora=(function(){
         }
     }
     return Handler
-}).call(window)
+})()
